@@ -7,9 +7,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      todoText: '',
-      id: '',
-      completed: false,
+      toDoText: '',
       listData: 
         [
           {
@@ -28,17 +26,53 @@ class App extends React.Component {
             completed: false
           }
         ]
+    }   
+  }
+
+
+  //Form Submit Handler
+  addListItem = (e) => {
+    //Prevent default form behaviour
+    e.preventDefault();
+
+    //Create new task from state
+    const newTask = {
+      task: this.state.toDoText,
+      id: Math.random() * 100,
+      completed: false
     }
 
-   
+    //Spread the existant array and add in new task
+    this.setState({listData: [...this.state.listData, newTask]})
   }
+
+
+  //Form Input handler
+  updateText = (e) => {
+    this.setState({toDoText:   e.target.value})
+  }
+
+  //Todo item on click handler
+  toDoClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.id)
+
+    this.state.listData.map(item => {
+      if (item.id === Number(e.target.id)) {
+       item.completed = true;
+      }      
+    })
+
+    this.setState({listData: this.state.listData})
+  }
+
 
   render() {
     return (
       <div>
         <h2>To Do List</h2>
-        <TodoForm />
-        <TodoList listData={this.state.listData}/>
+        <TodoForm submit={this.addListItem} updateText={this.updateText} />
+        <TodoList listData={this.state.listData} toDoClick={this.toDoClick}/>
       </div>
     );
   }

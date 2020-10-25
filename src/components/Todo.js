@@ -1,9 +1,11 @@
 import React from 'react'
 
 export default function ToDo(props) {
-    const { task, id, completed } = props;
+    const { task, id, completed, toDoClick } = props;
 
     return(
-        <div>{task}</div>
+        <>
+            {completed ? <div id={id} onClick={toDoClick}><del>{task}</del></div> : <div id={id} onClick={toDoClick}>{task}</div>}        
+        </>
     )
 }
