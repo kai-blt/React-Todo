@@ -6,10 +6,22 @@ class App extends React.Component {
   constructor() {
     super();
 
-    this.state = [
+
+    //Initialize List Data
+    this.listData = [
       {
         task: 'Organize Garage',
-        id: 1528817077286,
+        id: 1,
+        completed: false
+      },
+      {
+        task: 'Clean House',
+        id: 2,
+        completed: false
+      },
+      {
+        task: 'Read Book',
+        id: 3,
         completed: false
       }
     ];
@@ -20,7 +32,7 @@ class App extends React.Component {
       <div>
         <h2>To Do List</h2>
         <TodoForm />
-        <TodoList />
+        <TodoList listData={this.listData}/>
       </div>
     );
   }
