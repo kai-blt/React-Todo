@@ -13,6 +13,7 @@ class App extends React.Component {
     }     
   }
 
+  //If component mounted, check to see if there's local storage. If so, set state to that saved data
   componentDidMount() {
     console.log(localStorage.length)
     if (localStorage.length > 0) {
@@ -21,6 +22,7 @@ class App extends React.Component {
     }
   }
 
+  //If a component updates, add the todo to storage
   componentDidUpdate() {    
     localStorage.setItem('listData', JSON.stringify(this.state.listData))
   }
