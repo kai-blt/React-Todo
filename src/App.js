@@ -50,22 +50,22 @@ class App extends React.Component {
 
   //Form Input handler
   updateText = (e) => {
-    this.setState({toDoText:   e.target.value})
+    this.setState({toDoText: e.target.value})
   }
 
-  //Todo item on click handler
-  toDoClick = (e) => {
-    e.preventDefault();
-
+  //Todo item on click handler toggle completed or not
+  toDoToggle = (itemId) => {  
     //If ids are equal, set completed true on item
-    this.state.listData.map(item => {
-      if (item.id === Number(e.target.id)) {
-       item.completed = true;
-      }      
-    })
-
+    
+    console.log(this.state.listData)
     //Re-Render by updating state
-    this.setState({listData: this.state.listData})
+    this.setState({ listData: this.state.listData.map(item => {
+      if (item.id === itemId) {
+        return {...item, completed: !item.completed }
+      } else {
+        return item;
+      }
+    })})
   }
 
   //Clear item handler
@@ -82,7 +82,7 @@ class App extends React.Component {
       <div>
         <h2>To Do List</h2>
         <TodoForm submit={this.addListItem} updateText={this.updateText} clearToDo={this.clearToDo} />
-        <TodoList listData={this.state.listData} toDoClick={this.toDoClick}/>
+        <TodoList listData={this.state.listData} toDoToggle={this.toDoToggle}/>
       </div>
     );
   }
