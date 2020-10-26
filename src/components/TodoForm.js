@@ -6,8 +6,8 @@ export default function ToDoForm(props) {
     return(
         <form onSubmit={submit}>
             <input type="text" onChange={updateText}></input>
-            <button onClick={submit}>Add</button>
-            <button onClick={clearToDo}>Clear</button>
+            <button onClick={submit} className="Add">Add</button>
+            <button onClick={clearToDo} className="Clear">Clear</button>
         </form>
     )
 }

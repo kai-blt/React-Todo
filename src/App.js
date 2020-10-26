@@ -2,6 +2,9 @@ import React from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
+
+
+
 class App extends React.Component {
   constructor() {
     super();
@@ -78,7 +81,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2>To Do List</h2>
+        <h1>To Do List</h1>
         <TodoForm submit={this.addListItem} updateText={this.updateText} clearToDo={this.clearToDo} />
         <TodoList listData={this.state.listData} toDoToggle={this.toDoToggle}/>
       </div>
