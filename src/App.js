@@ -3,35 +3,27 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 
-
-
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
       toDoText: '',
-      listData: 
-        [
-          {
-            task: 'Organize Garage',
-            id: 1,
-            completed: false
-          },
-          {
-            task: 'Clean House',
-            id: 2,
-            completed: false
-          },
-          {
-            task: 'Read Book',
-            id: 3,
-            completed: false
-          }
-        ]
-    }   
+      listData: []
+    }     
   }
 
+  componentDidMount() {
+    console.log(localStorage.length)
+    if (localStorage.length > 0) {
+      this.setState({listData: [...this.state.listData, ...JSON.parse(localStorage.getItem('listData'))]})
+      console.log(this.state.listData)
+    }
+  }
+
+  componentDidUpdate() {    
+    localStorage.setItem('listData', JSON.stringify(this.state.listData))
+  }
 
   //Form Submit Handler
   addListItem = (e) => {
@@ -47,6 +39,7 @@ class App extends React.Component {
 
     //Spread the existant array and add in new task
     this.setState({listData: [...this.state.listData, newTask]})
+    console.log(localStorage)
   }
 
 
