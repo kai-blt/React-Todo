@@ -72,6 +72,9 @@ const GlobalStyle = createGlobalStyle`
 
     input {
         font-size: 1.6rem;
+        border-radius: 5px;
+        box-shadow: inset 3px 4px 10px #111;
+        border: 0;
         padding: 1% 2%;
         margin: 1% 1%;
     }
