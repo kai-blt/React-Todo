@@ -8,6 +8,7 @@ class App extends React.Component {
 
     this.state = {
       toDoText: '',
+      itemsToClear: [],
       listData: 
         [
           {
@@ -55,15 +56,24 @@ class App extends React.Component {
   //Todo item on click handler
   toDoClick = (e) => {
     e.preventDefault();
-    console.log(e.target.id)
 
+    //If ids are equal, set completed true on item
     this.state.listData.map(item => {
       if (item.id === Number(e.target.id)) {
        item.completed = true;
       }      
     })
 
+    //Re-Render by updating state
     this.setState({listData: this.state.listData})
+  }
+
+  //Clear item handler
+  clearToDo = (e) => {
+    e.preventDefault();
+
+    //Filter out all completed items and set state to new data
+    this.setState({listData: this.state.listData.filter(item => item.completed === false)})
   }
 
 
@@ -71,7 +81,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>To Do List</h2>
-        <TodoForm submit={this.addListItem} updateText={this.updateText} />
+        <TodoForm submit={this.addListItem} updateText={this.updateText} clearToDo={this.clearToDo} />
         <TodoList listData={this.state.listData} toDoClick={this.toDoClick}/>
       </div>
     );
