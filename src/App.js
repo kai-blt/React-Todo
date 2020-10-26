@@ -57,8 +57,7 @@ class App extends React.Component {
   toDoToggle = (itemId) => {  
     //If ids are equal, set completed true on item
     
-    console.log(this.state.listData)
-    //Re-Render by updating state
+    //Re-Render list with toggled item completed
     this.setState({ listData: this.state.listData.map(item => {
       if (item.id === itemId) {
         return {...item, completed: !item.completed }
